@@ -7,40 +7,29 @@ const currentYear = new Date().getFullYear();
 
 <template>
   <footer class="site-footer">
-    <div class="footer-top container-wide">
+    <div class="footer-cta section-shell">
       <div>
-        <p class="footer-kicker">Pronto para transformar sua ideia?</p>
-        <h2>Vamos criar algo<br /><em>que seja seu.</em></h2>
+        <p class="eyebrow eyebrow-light">Sua ideia pode sair do papel</p>
+        <h2>Vamos criar sua<br /><em>próxima favorita?</em></h2>
       </div>
-      <a class="circle-link" :href="whatsappUrl()" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
-        <ArrowUpRight :size="30" aria-hidden="true" />
+      <a class="footer-button" :href="whatsappUrl()" target="_blank" rel="noopener">
+        Conversar no WhatsApp <ArrowUpRight :size="20" aria-hidden="true" />
       </a>
     </div>
 
-    <div class="footer-grid container-wide">
-      <RouterLink class="footer-brand" to="/">
-        <strong>AURORA</strong>
-        <span>Tattoo Atelier</span>
-      </RouterLink>
-      <div>
-        <p class="footer-label">Visite</p>
-        <p>{{ siteConfig.address }}<br />Atendimento com hora marcada</p>
-      </div>
-      <div>
-        <p class="footer-label">Contato</p>
-        <a :href="`mailto:${siteConfig.email}`">{{ siteConfig.email }}</a><br />
-        <a :href="whatsappUrl()" target="_blank" rel="noopener">{{ siteConfig.phoneLabel }}</a>
-      </div>
-      <div>
-        <p class="footer-label">Acompanhe</p>
-        <a :href="siteConfig.instagramUrl" target="_blank" rel="noopener">Instagram ↗</a>
-      </div>
+    <div class="footer-meta section-shell">
+      <a class="brand footer-brand" href="#inicio">
+        <span class="brand-mark">A</span>
+        <span><strong>Aurora</strong><small>flash club</small></span>
+      </a>
+      <p>{{ siteConfig.address }}<br />Terça a sábado · com agendamento</p>
+      <a class="instagram-link" :href="siteConfig.instagramUrl" target="_blank" rel="noopener">
+        @ {{ siteConfig.instagramHandle.replace('@', '') }}
+      </a>
     </div>
-
-    <div class="footer-bottom container-wide">
+    <div class="footer-bottom section-shell">
       <span>© {{ currentYear }} {{ siteConfig.name }}</span>
-      <span>Arte, cuidado e presença.</span>
-      <RouterLink to="/">Voltar ao início ↑</RouterLink>
+      <span>Desenho autoral · ambiente seguro · atendimento com calma</span>
     </div>
   </footer>
 </template>
