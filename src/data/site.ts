@@ -7,8 +7,8 @@ export const siteConfig = {
   whatsappDigits: '5511999999999',
   instagramHandle: '@indy.tatoo',
   instagramUrl: 'https://instagram.com/indy.tatoo',
-  location: 'São Paulo, SP',
-  address: 'São Paulo — atendimento com hora marcada',
+  location: 'Goiânia, GO',
+  address: 'Goiânia, GO — atendimento com hora marcada',
 };
 
 export const whatsappUrl = (message = 'Oi, Indy! Quero conversar sobre uma tattoo.') =>

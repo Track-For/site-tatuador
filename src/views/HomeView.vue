@@ -7,7 +7,7 @@ import { siteConfig, whatsappUrl } from '../data/site';
 useHead({
   title: 'Indy Tatoo | Tattoos pequenas, memórias gigantes',
   meta: [
-    { name: 'description', content: 'Tatuagens autorais de personagens, nostalgia e traço delicado. Conheça os trabalhos e peça seu orçamento pelo WhatsApp.' },
+    { name: 'description', content: 'Tatuagens autorais de personagens, nostalgia e traço delicado em Goiânia. Conheça os trabalhos e peça seu orçamento pelo WhatsApp.' },
     { property: 'og:title', content: 'Indy Tatoo | Tattoos pequenas, memórias gigantes' },
     { property: 'og:description', content: 'Personagens, nostalgia e traço delicado em projetos feitos para a sua história.' },
     { property: 'og:url', content: siteConfig.domain },
@@ -31,7 +31,7 @@ const faqs = [
 <template>
   <section id="inicio" class="hero">
     <div class="hero-copy">
-      <p class="eyebrow"><Sparkles :size="15" aria-hidden="true" /> Tattoo autoral · São Paulo</p>
+      <p class="eyebrow"><Sparkles :size="15" aria-hidden="true" /> Tattoo autoral · Goiânia</p>
       <h1>Tattoos pequenas.<br /><em>Memórias gigantes.</em></h1>
       <p class="hero-lead">Personagens, nostalgia e traço delicado para transformar aquela ideia afetiva em uma tattoo só sua.</p>
       <div class="hero-actions">

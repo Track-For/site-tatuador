@@ -6,7 +6,7 @@ import { siteConfig, whatsappUrl } from '../data/site';
 useHead({
   title: 'Sobre | Indy Tatoo',
   meta: [
-    { name: 'description', content: 'Conheça a história, a missão e o processo criativo da Indy Tatoo, estúdio de tatuagem autoral em São Paulo.' },
+    { name: 'description', content: 'Conheça a história, a missão e o processo criativo da Indy Tatoo, estúdio de tatuagem autoral em Goiânia.' },
     { property: 'og:title', content: 'Sobre | Indy Tatoo' },
     { property: 'og:description', content: 'Um atelier onde técnica, escuta e expressão pessoal caminham juntas.' },
     { property: 'og:url', content: `${siteConfig.domain}/sobre` },
@@ -72,7 +72,7 @@ const values = [
       <ul>
         <li><span>01</span> Atendimento exclusivamente com hora marcada</li>
         <li><span>02</span> Materiais descartáveis e esterilização certificada</li>
-        <li><span>03</span> Fácil acesso na Vila Madalena, São Paulo</li>
+        <li><span>03</span> Atendimento com hora marcada em Goiânia</li>
       </ul>
     </div>
     <img src="/images/studio-detail.jpg" width="1100" height="900" alt="Ambiente acolhedor e profissional do atelier de tatuagem" loading="lazy" />

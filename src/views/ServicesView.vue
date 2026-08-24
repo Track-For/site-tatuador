@@ -4,9 +4,9 @@ import { useHead } from '@unhead/vue';
 import { siteConfig, whatsappUrl } from '../data/site';
 
 useHead({
-  title: 'Serviços de Tatuagem | Fine Line, Blackwork e Autoral em SP',
+  title: 'Serviços de Tatuagem | Personagens e Autoral em Goiânia',
   meta: [
-    { name: 'description', content: 'Conheça os serviços da Indy Tatoo: personagens, fine line, tatuagem autoral e retoques em São Paulo.' },
+    { name: 'description', content: 'Conheça os serviços da Indy Tatoo: personagens, fine line, tatuagem autoral e retoques em Goiânia.' },
     { property: 'og:title', content: 'Serviços | Indy Tatoo' },
     { property: 'og:description', content: 'Fine line, blackwork, projetos autorais e cover-ups criados para cada corpo.' },
     { property: 'og:url', content: `${siteConfig.domain}/servicos` },
