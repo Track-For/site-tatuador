@@ -42,10 +42,11 @@ const faqs = [
 
 <template>
   <section class="ouse-hero">
+    <span class="ouse-hero-word" aria-hidden="true">OUSE</span>
     <div class="ouse-hero-copy">
       <p class="ouse-kicker"><Sparkles :size="14" aria-hidden="true" /> Perfumaria & acessórios</p>
-      <h1>Encontre o aroma que<br /><em>fala por você.</em></h1>
-      <p class="ouse-lead">Perfumes escolhidos para marcar momentos, despertar memórias e traduzir quem você é.</p>
+      <h1><span>Ouse</span><span>deixar</span><em>lembrança.</em></h1>
+      <p class="ouse-lead">Fragrâncias que chegam antes da palavra e permanecem muito depois do encontro.</p>
       <div class="ouse-actions">
         <a class="ouse-button" :href="whatsappUrl('Olá, OUSE! Quero conhecer os perfumes disponíveis.')" target="_blank" rel="noopener">
           Descobrir perfumes <ArrowUpRight :size="18" aria-hidden="true" />
@@ -53,30 +54,35 @@ const faqs = [
         <a class="ouse-text-link" href="#colecao">Explorar coleções <span aria-hidden="true">↓</span></a>
       </div>
       <div class="ouse-signature" aria-label="Assinatura da marca">
-        <span>O</span><p><strong>OUSE</strong> sentir primeiro.</p>
+        <span>O</span><p><strong>OUSE</strong> sua essência em cena.</p>
       </div>
     </div>
 
     <figure class="ouse-hero-visual">
       <img src="/images/ouse-hero.png" width="1536" height="1024" alt="Composição elegante com frascos de perfume em tons rosé, âmbar e marfim" fetchpriority="high" />
-      <figcaption><span>Curadoria OUSE</span><span>01 — Sua nova assinatura</span></figcaption>
+      <figcaption><span>Curadoria OUSE</span><span>Filme 01 — Sua nova assinatura</span></figcaption>
     </figure>
+    <a class="hero-scroll" href="#colecao"><span>Descubra</span><i aria-hidden="true"></i></a>
   </section>
 
-  <section class="trust-strip" aria-label="Diferenciais da OUSE">
+  <div class="cinema-ticker" aria-hidden="true">
+    <div>OUSE <span>✦</span> PERFUMARIA <span>✦</span> ACESSÓRIOS <span>✦</span> CURADORIA <span>✦</span> SUA ESSÊNCIA EM CENA <span>✦</span> OUSE <span>✦</span> PERFUMARIA <span>✦</span> ACESSÓRIOS <span>✦</span> CURADORIA <span>✦</span> SUA ESSÊNCIA EM CENA <span>✦</span></div>
+  </div>
+
+  <section class="trust-strip" aria-label="Diferenciais da OUSE" data-reveal>
     <article><Sparkles :size="19" /><div><strong>Curadoria especial</strong><span>Escolhas para cada personalidade</span></div></article>
     <article><Gift :size="19" /><div><strong>Presente com intenção</strong><span>Detalhes feitos para encantar</span></div></article>
     <article><ShieldCheck :size="19" /><div><strong>Compra acompanhada</strong><span>Atendimento próximo e cuidadoso</span></div></article>
   </section>
 
   <section id="colecao" class="section collection-section">
-    <div class="section-title container-wide">
+    <div class="section-title container-wide" data-reveal>
       <div><p class="eyebrow">Escolhas OUSE</p><h2>Comece pelo que<br /><em>você quer sentir.</em></h2></div>
       <p>Nossa coleção não começa em uma lista de nomes. Começa na sensação que você quer levar consigo — ou oferecer a alguém.</p>
     </div>
 
-    <div class="collection-grid container-wide">
-      <article v-for="(item, index) in collections" :key="item.title" class="collection-card" :class="item.class">
+    <div class="collection-grid container-wide" data-reveal>
+      <article v-for="(item, index) in collections" :key="item.title" class="collection-card" :class="item.class" data-reveal>
         <img :src="item.image" :alt="item.title" width="1024" height="1280" loading="lazy" />
         <div class="collection-overlay">
           <span>0{{ index + 1 }}</span>
@@ -88,13 +94,13 @@ const faqs = [
   </section>
 
   <section class="finder-section">
-    <div class="finder-copy">
+    <div class="finder-copy" data-reveal>
       <p class="eyebrow">Curadoria personalizada</p>
       <h2>Seu perfume pode<br />chegar antes do <em>nome.</em></h2>
       <p>Você conta o que gosta, como quer se sentir e em quais momentos pretende usar. A OUSE traduz essas pistas em sugestões que combinam com a sua rotina.</p>
       <RouterLink to="/servicos" class="editorial-link">Conheça a curadoria <ArrowRight :size="18" /></RouterLink>
     </div>
-    <div class="finder-card" aria-label="Etapas da curadoria OUSE">
+    <div class="finder-card" aria-label="Etapas da curadoria OUSE" data-reveal>
       <span class="finder-card-label">Seu mapa olfativo</span>
       <ol>
         <li><span>01</span><div><strong>O que te atrai?</strong><p>Frescor, doçura, flores ou intensidade.</p></div></li>
@@ -106,12 +112,12 @@ const faqs = [
   </section>
 
   <section class="section families-section">
-    <div class="families-heading container-wide">
+    <div class="families-heading container-wide" data-reveal>
       <p class="eyebrow">Famílias olfativas</p>
       <h2>Qual delas<br /><em>tem a sua voz?</em></h2>
     </div>
-    <div class="families-grid container-wide">
-      <article v-for="family in scentFamilies" :key="family.number">
+    <div class="families-grid container-wide" data-reveal>
+      <article v-for="family in scentFamilies" :key="family.number" data-reveal>
         <span>{{ family.number }}</span>
         <div class="family-orbit" aria-hidden="true"><i></i></div>
         <h3>{{ family.name }}</h3>
@@ -122,11 +128,11 @@ const faqs = [
   </section>
 
   <section class="about-preview">
-    <figure class="about-preview-image">
+    <figure class="about-preview-image" data-reveal>
       <img src="/images/ouse-gifts.png" width="1024" height="1280" alt="Perfume, joias e embalagem para presente em uma composição delicada" loading="lazy" />
       <div class="brand-seal" aria-hidden="true"><strong>OUSE</strong><span>perfumaria & acessórios</span></div>
     </figure>
-    <div class="about-preview-copy">
+    <div class="about-preview-copy" data-reveal>
       <p class="eyebrow">Sobre a OUSE</p>
       <h2>Beleza que fica<br />na <em>memória.</em></h2>
       <p class="large-copy">Acreditamos que perfume não é detalhe. É presença, lembrança e uma forma silenciosa de dizer quem você é.</p>
@@ -136,7 +142,7 @@ const faqs = [
   </section>
 
   <section class="testimonial-section">
-    <div class="testimonial-inner">
+    <div class="testimonial-inner" data-reveal>
       <Heart :size="25" :stroke-width="1.3" aria-hidden="true" />
       <div class="stars" aria-label="5 de 5 estrelas"><Star v-for="n in 5" :key="n" :size="14" fill="currentColor" /></div>
       <blockquote>“Mais do que indicar um perfume, a OUSE entendeu o que eu queria sentir. A escolha ficou com a minha cara.”</blockquote>
@@ -146,12 +152,12 @@ const faqs = [
 
   <section class="section faq-section">
     <div class="faq-layout container-wide">
-      <div class="faq-intro">
+      <div class="faq-intro" data-reveal>
         <p class="eyebrow">Dúvidas frequentes</p>
         <h2>Escolher também<br />é <em>descobrir.</em></h2>
         <p>Reunimos respostas para deixar sua experiência mais simples — do primeiro desejo ao perfume escolhido.</p>
       </div>
-      <div class="faq-list">
+      <div class="faq-list" data-reveal>
         <details v-for="(faq, index) in faqs" :key="faq.q" :open="index === 0">
           <summary><span>{{ faq.q }}</span><b aria-hidden="true">+</b></summary>
           <p>{{ faq.a }}</p>
@@ -162,7 +168,7 @@ const faqs = [
 
   <section id="contato" class="contact-section">
     <div class="contact-layout container-wide">
-      <div class="contact-intro">
+      <div class="contact-intro" data-reveal>
         <p class="eyebrow">Fale com a OUSE</p>
         <h2>Vamos encontrar<br />a sua <em>assinatura?</em></h2>
         <p>Conte um pouco do que você busca. Preparamos uma mensagem com suas preferências para continuar o atendimento pelo WhatsApp.</p>
@@ -171,7 +177,7 @@ const faqs = [
           <span>Envios</span><strong>Consulte disponibilidade para sua região</strong>
         </div>
       </div>
-      <ContactForm />
+      <div data-reveal><ContactForm /></div>
     </div>
   </section>
 </template>

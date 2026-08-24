@@ -43,7 +43,7 @@ const included = [
   </section>
 
   <section class="services-list container-wide">
-    <article v-for="service in services" :key="service.number" class="service-row">
+    <article v-for="service in services" :key="service.number" class="service-row" data-reveal>
       <span class="service-number">{{ service.number }}</span>
       <figure class="service-image"><img :src="service.image" :alt="service.title" width="1024" height="1280" loading="lazy" /></figure>
       <div class="service-copy">
@@ -58,18 +58,18 @@ const included = [
 
   <section class="included-section">
     <div class="included-layout container-wide">
-      <div>
+      <div data-reveal>
         <p class="eyebrow">Como funciona</p>
         <h2>Uma conversa.<br />Muitas <em>possibilidades.</em></h2>
         <p>Você não precisa conhecer termos técnicos. Basta contar o que gosta, o que evita e como quer se sentir.</p>
       </div>
-      <ul><li v-for="item in included" :key="item"><Check :size="17" aria-hidden="true" />{{ item }}</li></ul>
+      <ul data-reveal><li v-for="item in included" :key="item"><Check :size="17" aria-hidden="true" />{{ item }}</li></ul>
     </div>
   </section>
 
   <section class="curation-steps container-wide">
-    <div><p class="eyebrow">Em três passos</p><h2>Do desejo<br />à escolha.</h2></div>
-    <ol>
+    <div data-reveal><p class="eyebrow">Em três passos</p><h2>Do desejo<br />à escolha.</h2></div>
+    <ol data-reveal>
       <li><span>01</span><div><h3>Conte as pistas</h3><p>Preferências, ocasião, intensidade e referências que você já conhece.</p></div></li>
       <li><span>02</span><div><h3>Receba sugestões</h3><p>Apresentamos opções do catálogo alinhadas ao perfil que construímos.</p></div></li>
       <li><span>03</span><div><h3>Escolha no seu ritmo</h3><p>Tire dúvidas e decida com segurança, sem pressão e com acompanhamento.</p></div></li>
@@ -77,7 +77,7 @@ const included = [
   </section>
 
   <section class="page-cta page-cta-rose">
-    <div>
+    <div data-reveal>
       <p class="eyebrow">Comece agora</p>
       <h2>Qual sensação você<br />quer levar <em>consigo?</em></h2>
       <a class="ouse-button ouse-button-dark" :href="whatsappUrl('Olá, OUSE! Quero começar uma curadoria de perfumes.')" target="_blank" rel="noopener">Falar com a OUSE <ArrowUpRight :size="18" /></a>

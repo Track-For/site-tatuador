@@ -35,11 +35,11 @@ const values = [
   </section>
 
   <section class="story-section container-wide">
-    <figure class="story-image">
+    <figure class="story-image" data-reveal>
       <img src="/images/ouse-floral.png" width="1024" height="1280" alt="Frasco de perfume rosé ao lado de uma flor delicada" />
       <figcaption>Um aroma. Uma memória. Uma assinatura.</figcaption>
     </figure>
-    <div class="story-copy">
+    <div class="story-copy" data-reveal>
       <p class="eyebrow">Por que OUSE?</p>
       <h2>Porque escolher é<br />também se <em>revelar.</em></h2>
       <p class="large-copy">A OUSE nasceu do desejo de tornar a perfumaria mais humana: menos sobre seguir uma fórmula e mais sobre reconhecer o que desperta algo em você.</p>
@@ -50,12 +50,12 @@ const values = [
   </section>
 
   <section class="values-section">
-    <div class="values-intro container-wide">
+    <div class="values-intro container-wide" data-reveal>
       <p class="eyebrow">O que nos guia</p>
       <h2>Sentir. Escolher.<br /><em>Marcar.</em></h2>
     </div>
     <div class="values-grid container-wide">
-      <article v-for="value in values" :key="value.number">
+      <article v-for="value in values" :key="value.number" data-reveal>
         <span>{{ value.number }}</span>
         <component :is="value.icon" :size="27" :stroke-width="1.35" aria-hidden="true" />
         <h3>{{ value.title }}</h3>
@@ -65,15 +65,15 @@ const values = [
   </section>
 
   <section class="manifesto-section">
-    <div class="manifesto-copy">
+    <div class="manifesto-copy" data-reveal>
       <p class="eyebrow">Manifesto OUSE</p>
       <blockquote>Ouse mudar de ideia.<br />Ouse escolher por você.<br /><em>Ouse deixar lembrança.</em></blockquote>
     </div>
-    <figure><img src="/images/ouse-woody.png" width="1024" height="1280" alt="Perfume âmbar em uma composição intensa e sofisticada" loading="lazy" /></figure>
+    <figure data-reveal><img src="/images/ouse-woody.png" width="1024" height="1280" alt="Perfume âmbar em uma composição intensa e sofisticada" loading="lazy" /></figure>
   </section>
 
   <section class="page-cta">
-    <div>
+    <div data-reveal>
       <p class="eyebrow">Sua próxima descoberta</p>
       <h2>Pronta para encontrar<br />um perfume <em>seu?</em></h2>
       <a class="ouse-button ouse-button-light" :href="whatsappUrl('Olá, OUSE! Quero conhecer a curadoria de vocês.')" target="_blank" rel="noopener">Conversar com a OUSE <ArrowUpRight :size="18" /></a>
