@@ -5,10 +5,10 @@ import ContactForm from '../components/ContactForm.vue';
 import { siteConfig, whatsappUrl } from '../data/site';
 
 useHead({
-  title: 'Aurora Flash Club | Tattoos pequenas, memórias gigantes',
+  title: 'Indy Tatoo | Tattoos pequenas, memórias gigantes',
   meta: [
     { name: 'description', content: 'Tatuagens autorais de personagens, nostalgia e traço delicado. Conheça os trabalhos e peça seu orçamento pelo WhatsApp.' },
-    { property: 'og:title', content: 'Aurora Flash Club | Tattoos pequenas, memórias gigantes' },
+    { property: 'og:title', content: 'Indy Tatoo | Tattoos pequenas, memórias gigantes' },
     { property: 'og:description', content: 'Personagens, nostalgia e traço delicado em projetos feitos para a sua história.' },
     { property: 'og:url', content: siteConfig.domain },
   ],
@@ -35,7 +35,7 @@ const faqs = [
       <h1>Tattoos pequenas.<br /><em>Memórias gigantes.</em></h1>
       <p class="hero-lead">Personagens, nostalgia e traço delicado para transformar aquela ideia afetiva em uma tattoo só sua.</p>
       <div class="hero-actions">
-        <a class="button button-primary" :href="whatsappUrl('Oi, Aurora! Tenho uma ideia de tattoo e queria saber como funciona.')" target="_blank" rel="noopener">
+        <a class="button button-primary" :href="whatsappUrl('Oi, Indy! Tenho uma ideia de tattoo e queria saber como funciona.')" target="_blank" rel="noopener">
           Quero minha tattoo <ArrowUpRight :size="18" aria-hidden="true" />
         </a>
         <a class="text-link" href="#trabalhos">Ver trabalhos <ArrowDown :size="16" aria-hidden="true" /></a>
@@ -119,7 +119,7 @@ const faqs = [
     <div class="about-card section-shell">
       <div class="about-title">
         <p class="eyebrow">Por trás do traço</p>
-        <h2>Oi, eu sou<br /><em>a Aurora.</em></h2>
+        <h2>Oi, eu sou<br /><em>a Indy.</em></h2>
         <span class="about-note" aria-hidden="true">pode chegar com sua ideia “estranha” ♡</span>
       </div>
       <div class="about-copy">

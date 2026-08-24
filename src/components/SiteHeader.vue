@@ -19,9 +19,9 @@ onBeforeUnmount(() => document.body.classList.remove('menu-open'));
 <template>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#inicio" aria-label="Aurora Flash Club — início">
-        <span class="brand-mark">A</span>
-        <span><strong>Aurora</strong><small>flash club</small></span>
+      <a class="brand" href="#inicio" aria-label="Indy Tatoo — início">
+        <span class="brand-mark">I</span>
+        <span><strong>Indy</strong><small>tatoo</small></span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navegação principal">

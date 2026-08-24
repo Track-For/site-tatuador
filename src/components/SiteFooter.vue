@@ -19,8 +19,8 @@ const currentYear = new Date().getFullYear();
 
     <div class="footer-meta section-shell">
       <a class="brand footer-brand" href="#inicio">
-        <span class="brand-mark">A</span>
-        <span><strong>Aurora</strong><small>flash club</small></span>
+        <span class="brand-mark">I</span>
+        <span><strong>Indy</strong><small>tatoo</small></span>
       </a>
       <p>{{ siteConfig.address }}<br />Terça a sábado · com agendamento</p>
       <a class="instagram-link" :href="siteConfig.instagramUrl" target="_blank" rel="noopener">

@@ -6,11 +6,11 @@ import { siteConfig, whatsappUrl } from '../data/site';
 useHead({
   title: 'Serviços de Tatuagem | Fine Line, Blackwork e Autoral em SP',
   meta: [
-    { name: 'description', content: 'Conheça os serviços do Aurora Tattoo Atelier: fine line, blackwork, tatuagem autoral, cover-up e retoques em São Paulo.' },
-    { property: 'og:title', content: 'Serviços | Aurora Tattoo Atelier' },
+    { name: 'description', content: 'Conheça os serviços da Indy Tatoo: personagens, fine line, tatuagem autoral e retoques em São Paulo.' },
+    { property: 'og:title', content: 'Serviços | Indy Tatoo' },
     { property: 'og:description', content: 'Fine line, blackwork, projetos autorais e cover-ups criados para cada corpo.' },
     { property: 'og:url', content: `${siteConfig.domain}/servicos` },
-    { name: 'twitter:title', content: 'Serviços | Aurora Tattoo Atelier' },
+    { name: 'twitter:title', content: 'Serviços | Indy Tatoo' },
     { name: 'twitter:description', content: 'Fine line, blackwork, projetos autorais e cover-ups criados para cada corpo.' },
   ],
   link: [{ rel: 'canonical', href: `${siteConfig.domain}/servicos` }],

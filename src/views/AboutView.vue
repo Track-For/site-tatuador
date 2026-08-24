@@ -4,13 +4,13 @@ import { useHead } from '@unhead/vue';
 import { siteConfig, whatsappUrl } from '../data/site';
 
 useHead({
-  title: 'Sobre o Atelier | Aurora Tattoo Atelier',
+  title: 'Sobre | Indy Tatoo',
   meta: [
-    { name: 'description', content: 'Conheça a história, a missão e o processo criativo do Aurora Tattoo Atelier, estúdio de tatuagem autoral na Vila Madalena, São Paulo.' },
-    { property: 'og:title', content: 'Sobre o Aurora Tattoo Atelier' },
+    { name: 'description', content: 'Conheça a história, a missão e o processo criativo da Indy Tatoo, estúdio de tatuagem autoral em São Paulo.' },
+    { property: 'og:title', content: 'Sobre | Indy Tatoo' },
     { property: 'og:description', content: 'Um atelier onde técnica, escuta e expressão pessoal caminham juntas.' },
     { property: 'og:url', content: `${siteConfig.domain}/sobre` },
-    { name: 'twitter:title', content: 'Sobre o Aurora Tattoo Atelier' },
+    { name: 'twitter:title', content: 'Sobre | Indy Tatoo' },
     { name: 'twitter:description', content: 'Um atelier onde técnica, escuta e expressão pessoal caminham juntas.' },
   ],
   link: [{ rel: 'canonical', href: `${siteConfig.domain}/sobre` }],
@@ -30,20 +30,20 @@ const values = [
         <p class="eyebrow">O atelier</p>
         <h1>Nada aqui<br /><em>nasce pronto.</em></h1>
       </div>
-      <p>O Aurora é um espaço de criação autoral, cuidado e expressão — feito para que cada pessoa viva a tatuagem como um encontro consigo.</p>
+      <p>A Indy Tatoo é um espaço de criação autoral, cuidado e expressão — feito para que cada pessoa viva a tatuagem como um encontro consigo.</p>
     </div>
   </section>
 
   <section class="story-section container-wide">
     <figure class="story-image">
-      <img src="/images/artist-portrait.jpg" width="900" height="1100" alt="Artista do Aurora Tattoo Atelier em seu processo criativo" />
+      <img src="/images/artist-portrait.jpg" width="900" height="1100" alt="Artista da Indy Tatoo em seu processo criativo" />
       <figcaption>Alex Nunes · Artista residente</figcaption>
     </figure>
     <div class="story-copy">
       <p class="eyebrow">Nossa história</p>
       <h2>Primeiro a escuta.<br />Depois, a <em>agulha.</em></h2>
       <p class="large-copy">Tudo começou em 2017, com uma mesa de desenho, uma máquina e a convicção de que tatuar poderia ser um processo mais cuidadoso.</p>
-      <p>Depois de anos trabalhando em estúdios compartilhados, o Aurora abriu as portas na Vila Madalena para receber menos projetos por dia e dedicar mais atenção a cada um deles.</p>
+      <p>Depois de anos trabalhando em estúdios compartilhados, a Indy Tatoo abriu as portas para receber menos projetos por dia e dedicar mais atenção a cada um deles.</p>
       <p>O atelier cresceu sem perder a essência: escutar antes de desenhar, explicar antes de executar e acompanhar mesmo depois que a sessão termina.</p>
       <div class="signature">Alex Nunes <span>Fundador & artista</span></div>
     </div>
@@ -78,7 +78,7 @@ const values = [
     <img src="/images/studio-detail.jpg" width="1100" height="900" alt="Ambiente acolhedor e profissional do atelier de tatuagem" loading="lazy" />
   </section>
 
-  <section class="numbers-section container-wide" aria-label="Números do Aurora Tattoo Atelier">
+  <section class="numbers-section container-wide" aria-label="Números da Indy Tatoo">
     <div><strong>8+</strong><span>anos dedicados à tatuagem</span></div>
     <div><strong>600+</strong><span>projetos realizados</span></div>
     <div><strong>5.0</strong><span>média de avaliação</span></div>
