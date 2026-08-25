@@ -19,19 +19,19 @@ onBeforeUnmount(() => document.body.classList.remove('menu-open'));
 <template>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#inicio" aria-label="Indy Tatoo — início">
-        <span class="brand-mark">I</span>
-        <span><strong>Indy</strong><small>tatoo</small></span>
+      <a class="brand" href="#inicio" aria-label="Vértice Tattoo — início">
+        <span class="brand-mark"><i>V</i></span>
+        <span><strong>Vértice</strong><small>tattoo atelier</small></span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navegação principal">
-        <a href="#trabalhos">Trabalhos</a>
-        <a href="#experiencia">Como funciona</a>
-        <a href="#sobre">Sobre</a>
+        <a href="#corpo">No corpo</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">O artista</a>
       </nav>
 
       <a class="header-cta" :href="whatsappUrl()" target="_blank" rel="noopener">
-        Quero tatuar <ArrowUpRight :size="17" aria-hidden="true" />
+        Começar projeto <ArrowUpRight :size="17" aria-hidden="true" />
       </a>
 
       <button class="menu-button" type="button" :aria-expanded="menuOpen" :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'" aria-controls="mobile-menu" @click="menuOpen = !menuOpen">
@@ -41,10 +41,10 @@ onBeforeUnmount(() => document.body.classList.remove('menu-open'));
     </div>
 
     <nav v-show="menuOpen" id="mobile-menu" class="mobile-nav" aria-label="Navegação para celular">
-      <a href="#trabalhos" @click="closeMenu">Trabalhos</a>
-      <a href="#experiencia" @click="closeMenu">Como funciona</a>
-      <a href="#sobre" @click="closeMenu">Sobre</a>
-      <a :href="whatsappUrl()" target="_blank" rel="noopener">Quero tatuar <ArrowUpRight :size="22" /></a>
+      <a href="#corpo" @click="closeMenu">No corpo</a>
+      <a href="#projetos" @click="closeMenu">Projetos</a>
+      <a href="#sobre" @click="closeMenu">O artista</a>
+      <a :href="whatsappUrl()" target="_blank" rel="noopener">Começar projeto <ArrowUpRight :size="22" /></a>
     </nav>
   </header>
 </template>

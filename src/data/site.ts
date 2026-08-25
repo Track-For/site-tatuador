@@ -1,15 +1,15 @@
 export const siteConfig = {
-  name: 'Indy Tatoo',
-  shortName: 'Indy',
+  name: 'Vértice Tattoo Atelier',
+  shortName: 'Vértice',
   domain: 'https://indy-tatoo.luizfhellippe.chatgpt.site',
-  email: 'contato@indytatoo.com.br',
-  phoneLabel: '(11) 99999-9999',
-  whatsappDigits: '5511999999999',
-  instagramHandle: '@indy.tatoo',
-  instagramUrl: 'https://instagram.com/indy.tatoo',
-  location: 'Goiânia, GO',
-  address: 'Goiânia, GO — atendimento com hora marcada',
+  email: 'atelier@vertice.example',
+  phoneLabel: '(11) 00000-0000',
+  whatsappDigits: '5511000000000',
+  instagramHandle: '@vertice.tattoo.atelier',
+  instagramUrl: 'https://example.com/vertice-tattoo-atelier',
+  location: 'São Paulo, SP',
+  address: 'Vila Madalena, São Paulo — endereço conceitual fictício',
 };
 
-export const whatsappUrl = (message = 'Oi, Indy! Quero conversar sobre uma tattoo.') =>
+export const whatsappUrl = (message = 'Olá, Vértice! Quero conversar sobre um projeto de tattoo.') =>
   `https://wa.me/${siteConfig.whatsappDigits}?text=${encodeURIComponent(message)}`;
