@@ -195,21 +195,81 @@ const introVisible = ref(true);
 const cursorLabel = ref('');
 let introTimer: number | undefined;
 let revealObserver: IntersectionObserver | undefined;
+let motionFrame: number | undefined;
+let prefersReducedMotion = false;
+let cursorTargetX = -100;
+let cursorTargetY = -100;
+let cursorCurrentX = -100;
+let cursorCurrentY = -100;
+let previousScroll = 0;
+let magneticTarget: HTMLElement | null = null;
 
 function setCursor(event: PointerEvent) {
-  document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`);
-  document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`);
+  cursorTargetX = event.clientX;
+  cursorTargetY = event.clientY;
   const target = (event.target as HTMLElement).closest<HTMLElement>('[data-cursor]');
   cursorLabel.value = target?.dataset.cursor ?? '';
+
+  const magnet = (event.target as HTMLElement).closest<HTMLElement>('[data-magnetic]');
+  if (magneticTarget && magneticTarget !== magnet) {
+    magneticTarget.style.setProperty('--mag-x', '0px');
+    magneticTarget.style.setProperty('--mag-y', '0px');
+  }
+  magneticTarget = magnet;
+  if (magnet) {
+    const rect = magnet.getBoundingClientRect();
+    magnet.style.setProperty('--mag-x', `${(event.clientX - rect.left - rect.width / 2) * .12}px`);
+    magnet.style.setProperty('--mag-y', `${(event.clientY - rect.top - rect.height / 2) * .12}px`);
+  }
+}
+
+function resetPointer() {
+  cursorTargetX = -100;
+  cursorTargetY = -100;
+  cursorLabel.value = '';
+  magneticTarget?.style.setProperty('--mag-x', '0px');
+  magneticTarget?.style.setProperty('--mag-y', '0px');
+  magneticTarget = null;
+}
+
+function updateScrollMotion() {
+  const scrollTop = window.scrollY;
+  const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollRange > 0 ? Math.min(1, scrollTop / scrollRange) : 0;
+  document.querySelector<HTMLElement>('.scroll-progress > span')?.style.setProperty('transform', `scaleY(${progress})`);
+
+  const header = document.querySelector<HTMLElement>('.site-header');
+  header?.classList.toggle('header-scrolled', scrollTop > 70);
+  header?.classList.toggle('header-hidden', scrollTop > previousScroll && scrollTop > 260);
+  previousScroll = scrollTop;
+}
+
+function motionLoop() {
+  cursorCurrentX += (cursorTargetX - cursorCurrentX) * .16;
+  cursorCurrentY += (cursorTargetY - cursorCurrentY) * .16;
+  document.documentElement.style.setProperty('--cursor-x', `${cursorCurrentX}px`);
+  document.documentElement.style.setProperty('--cursor-y', `${cursorCurrentY}px`);
+
+  document.querySelectorAll<HTMLElement>('[data-parallax]').forEach((element) => {
+    const rect = element.getBoundingClientRect();
+    if (rect.bottom < -120 || rect.top > window.innerHeight + 120) return;
+    const speed = Number(element.dataset.parallax ?? .04);
+    const distance = rect.top + rect.height / 2 - window.innerHeight / 2;
+    const offset = Math.max(-70, Math.min(70, -distance * speed));
+    element.style.setProperty('--parallax-y', `${offset}px`);
+  });
+
+  motionFrame = window.requestAnimationFrame(motionLoop);
 }
 
 onMounted(() => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.classList.add('motion-ready');
   document.body.classList.add('intro-active');
   introTimer = window.setTimeout(() => {
     introVisible.value = false;
     document.body.classList.remove('intro-active');
-  }, reduceMotion ? 50 : 1750);
+  }, prefersReducedMotion ? 50 : 1750);
 
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -218,16 +278,24 @@ onMounted(() => {
         revealObserver?.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.14 });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   document.querySelectorAll('.reveal').forEach((element) => revealObserver?.observe(element));
   window.addEventListener('pointermove', setCursor, { passive: true });
+  window.addEventListener('pointerleave', resetPointer, { passive: true });
+  window.addEventListener('scroll', updateScrollMotion, { passive: true });
+  updateScrollMotion();
+  if (!prefersReducedMotion) motionFrame = window.requestAnimationFrame(motionLoop);
 });
 
 onBeforeUnmount(() => {
   if (introTimer) window.clearTimeout(introTimer);
+  if (motionFrame) window.cancelAnimationFrame(motionFrame);
   revealObserver?.disconnect();
   window.removeEventListener('pointermove', setCursor);
+  window.removeEventListener('pointerleave', resetPointer);
+  window.removeEventListener('scroll', updateScrollMotion);
   document.body.classList.remove('intro-active');
+  document.body.classList.remove('motion-ready');
 });
 </script>
 
@@ -244,9 +312,12 @@ onBeforeUnmount(() => {
   <div class="custom-cursor" :class="{ 'has-label': cursorLabel }" aria-hidden="true">
     <span>{{ cursorLabel }}</span>
   </div>
+  <div class="cinema-grain" aria-hidden="true"></div>
+  <div class="cinema-bars" aria-hidden="true"><span></span><span></span></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span><small>SCROLL</small></div>
 
   <section id="inicio" class="hero hero-v2">
-    <div class="hero-v2-media" role="img" aria-label="Artista fictício desenvolvendo uma tatuagem autoral no estúdio"></div>
+    <div class="hero-v2-media" data-parallax="0.055" role="img" aria-label="Artista fictício desenvolvendo uma tatuagem autoral no estúdio"></div>
     <div class="hero-v2-shade" aria-hidden="true"></div>
     <div class="hero-v2-index" aria-hidden="true">
       <span>VRT / 01</span>
@@ -254,11 +325,11 @@ onBeforeUnmount(() => {
     </div>
     <div class="hero-v2-copy">
       <p class="hero-v2-kicker">Nilo Voss · São Paulo · desde 2016</p>
-      <h1>A pele guarda<br /><em>o que a boca cala.</em></h1>
+      <h1><span>A pele guarda</span><br /><em><span>o que a boca cala.</span></em></h1>
       <p class="hero-v2-lead">Não escolha uma tattoo olhando apenas uma galeria. Descubra como uma ideia ganha forma, movimento e presença no seu corpo.</p>
       <div class="hero-v2-actions">
-        <a class="button hero-v2-primary" href="#corpo" data-cursor="EXPLORAR">Explorar no corpo <ArrowDown :size="17" aria-hidden="true" /></a>
-        <a class="hero-v2-link" :href="whatsappUrl('Olá, Nilo. Quero começar um projeto autoral de tatuagem.')" target="_blank" rel="noopener" data-cursor="AGENDAR">Iniciar um projeto <ArrowUpRight :size="17" aria-hidden="true" /></a>
+        <a class="button hero-v2-primary" href="#corpo" data-cursor="EXPLORAR" data-magnetic>Explorar no corpo <ArrowDown :size="17" aria-hidden="true" /></a>
+        <a class="hero-v2-link" :href="whatsappUrl('Olá, Nilo. Quero começar um projeto autoral de tatuagem.')" target="_blank" rel="noopener" data-cursor="AGENDAR" data-magnetic>Iniciar um projeto <ArrowUpRight :size="17" aria-hidden="true" /></a>
       </div>
     </div>
     <div class="hero-v2-scroll" aria-hidden="true"><span></span> role para descobrir</div>
@@ -278,6 +349,10 @@ onBeforeUnmount(() => {
       </div>
     </div>
   </section>
+
+  <div class="film-strip" aria-hidden="true">
+    <div>ANATOMIA EM MOVIMENTO — ARTE QUE RESPIRA — FEITO PARA UM CORPO, NÃO PARA UMA TELA — ANATOMIA EM MOVIMENTO — ARTE QUE RESPIRA — FEITO PARA UM CORPO, NÃO PARA UMA TELA —</div>
+  </div>
 
   <section id="corpo" class="body-section section-light">
     <div class="shell section-title reveal">
@@ -310,7 +385,11 @@ onBeforeUnmount(() => {
       </div>
 
       <article class="body-case">
-        <div class="body-case-image" :style="{ backgroundImage: `url(${activeWork.image})` }" role="img" :aria-label="`Projeto ${activeWork.title}`"></div>
+        <div class="body-case-image" role="img" :aria-label="`Projeto ${activeWork.title}`">
+          <Transition name="case-image">
+            <img :key="activeWork.key" :src="activeWork.image" alt="" />
+          </Transition>
+        </div>
         <div class="body-case-copy" :key="activeWork.key">
           <div class="body-case-top"><span>{{ activeWork.style }}</span><span>{{ activeWork.label }}</span></div>
           <h3>{{ activeWork.title }}</h3>
@@ -331,7 +410,7 @@ onBeforeUnmount(() => {
 
     <div class="shell projects-editorial">
       <article v-for="projectItem in projects" :key="projectItem.index" class="project-card reveal" :class="projectItem.className" data-cursor="VER">
-        <div class="project-image-wrap"><img :src="projectItem.image" :alt="`Projeto fictício ${projectItem.title}`" loading="lazy" /></div>
+        <div class="project-image-wrap" data-parallax="0.045"><img :src="projectItem.image" :alt="`Projeto fictício ${projectItem.title}`" loading="lazy" /></div>
         <div class="project-caption">
           <span>{{ projectItem.index }}</span>
           <div><p>{{ projectItem.meta }}</p><h3>{{ projectItem.title }}</h3><small>{{ projectItem.text }}</small></div>
@@ -394,7 +473,7 @@ onBeforeUnmount(() => {
         <div class="builder-nav">
           <button v-if="builderStep > 0" type="button" class="builder-back" @click="builderStep -= 1"><ArrowLeft :size="17" /> Voltar</button>
           <span v-else></span>
-          <button type="button" class="builder-next" :disabled="!canAdvance" @click="advanceBuilder">{{ builderStep === 4 ? 'Iniciar projeto' : 'Continuar' }} <ArrowRight :size="17" /></button>
+          <button type="button" class="builder-next" data-magnetic :disabled="!canAdvance" @click="advanceBuilder">{{ builderStep === 4 ? 'Iniciar projeto' : 'Continuar' }} <ArrowRight :size="17" /></button>
         </div>
       </div>
 
@@ -403,7 +482,7 @@ onBeforeUnmount(() => {
         <p>Seu projeto já começou.</p>
         <h3>{{ project.style }} para {{ project.body.toLowerCase() }}.</h3>
         <ul><li>{{ project.size }}</li><li>{{ project.meaning }}</li><li v-if="project.reference">Referência: {{ project.reference }}</li></ul>
-        <a :href="projectWhatsapp" target="_blank" rel="noopener" data-cursor="AGENDAR">Quero transformar essa ideia em tattoo <ArrowUpRight :size="18" /></a>
+        <a :href="projectWhatsapp" target="_blank" rel="noopener" data-cursor="AGENDAR" data-magnetic>Quero transformar essa ideia em tattoo <ArrowUpRight :size="18" /></a>
         <button type="button" @click="builderComplete = false; builderStep = 0">Editar respostas</button>
       </div>
     </div>
@@ -411,7 +490,7 @@ onBeforeUnmount(() => {
 
   <section id="sobre" class="artist-section section-dark">
     <div class="shell artist-layout reveal">
-      <div class="artist-image"><img src="/images/hero-vertice.png" alt="Retrato conceitual do artista fictício Nilo Voss" loading="lazy" /><span>NV · 2016—26</span></div>
+      <div class="artist-image" data-parallax="0.035"><img src="/images/hero-vertice.png" alt="Retrato conceitual do artista fictício Nilo Voss" loading="lazy" /><span>NV · 2016—26</span></div>
       <div class="artist-copy">
         <p class="section-kicker">O artista / 07</p>
         <h2>Nilo<br /><em>Voss.</em></h2>
@@ -453,12 +532,12 @@ onBeforeUnmount(() => {
   </section>
 
   <section id="contato" class="final-cta">
-    <div class="final-cta-media" aria-hidden="true"></div>
+    <div class="final-cta-media" data-parallax="0.04" aria-hidden="true"></div>
     <div class="shell final-cta-inner reveal">
       <p class="section-kicker">O próximo traço / 11</p>
       <h2>Sua próxima tattoo<br /><em>ainda não existe.</em></h2>
       <p>Vamos criar algo que só faça sentido em você.</p>
-      <a href="#monte" data-cursor="AGENDAR">Começar meu projeto <ArrowUpRight :size="20" /></a>
+      <a href="#monte" data-cursor="AGENDAR" data-magnetic>Começar meu projeto <ArrowUpRight :size="20" /></a>
     </div>
   </section>
 </template>
